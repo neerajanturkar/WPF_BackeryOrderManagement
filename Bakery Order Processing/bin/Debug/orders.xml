@@ -186,7 +186,7 @@
     <deliveryAddress>
       <custId>399955744</custId>
       <addressId>415985732</addressId>
-      <title>Shop - A1</title>
+      <title>Shop A1</title>
       <street>Bismarkplatz 10</street>
       <houseNo>4</houseNo>
       <city>Heidelberg</city>
@@ -204,6 +204,7 @@
     <deliveryAddress>
       <custId>399955744</custId>
       <addressId>415985732</addressId>
+      <title>Shop A1</title>
       <street>Bismarkplatz 10</street>
       <houseNo>4</houseNo>
       <city>Heidelberg</city>
@@ -221,6 +222,11 @@
         <quantity>25</quantity>
         <productPrice>125</productPrice>
       </OrderItem>
+      <OrderItem>
+        <productName>Chocolate Cake 500g</productName>
+        <quantity>550</quantity>
+        <productPrice>687.5</productPrice>
+      </OrderItem>
     </orderItems>
     <grandTotal>0</grandTotal>
   </Order>
@@ -230,6 +236,40 @@
     <orderDate>2020-05-01T15:48:17.1612176+02:00</orderDate>
     <deliveryType>In store</deliveryType>
     <orderItems />
+    <grandTotal>0</grandTotal>
+  </Order>
+  <Order>
+    <id>1566420409</id>
+    <custId>399955744</custId>
+    <orderDate>2020-06-01T00:00:00</orderDate>
+    <deliveryType>To Location</deliveryType>
+    <deliveryAddress>
+      <custId>399955744</custId>
+      <addressId>415985732</addressId>
+      <title>Shop A1</title>
+      <street>Bismarkplatz 10</street>
+      <houseNo>4</houseNo>
+      <city>Heidelberg</city>
+      <postalCode>69121</postalCode>
+      <country>Germany</country>
+    </deliveryAddress>
+    <orderItems>
+      <OrderItem>
+        <productName>Milk Bread 500g</productName>
+        <quantity>10</quantity>
+        <productPrice>100</productPrice>
+      </OrderItem>
+      <OrderItem>
+        <productName>Whole Wheat Bread 500g</productName>
+        <quantity>25</quantity>
+        <productPrice>125</productPrice>
+      </OrderItem>
+      <OrderItem>
+        <productName>Chocolate Cake 500g</productName>
+        <quantity>550</quantity>
+        <productPrice>687.5</productPrice>
+      </OrderItem>
+    </orderItems>
     <grandTotal>0</grandTotal>
   </Order>
 </ArrayOfOrder>

@@ -601,17 +601,23 @@ namespace Bakery_Order_Processing
 
         private void MI_Orders_Click(object sender, RoutedEventArgs e)
         {
-            tab_general.IsSelected = true;
+            Grid_Orders.Visibility = Visibility.Visible;
+            Grid_Products.Visibility = Visibility.Hidden;
+            Grid_Requirements.Visibility = Visibility.Hidden;
         }
 
         private void MI_Products_Click(object sender, RoutedEventArgs e)
         {
-            tab_products.IsSelected = true;
+            Grid_Orders.Visibility = Visibility.Hidden;
+            Grid_Products.Visibility = Visibility.Visible;
+            Grid_Requirements.Visibility = Visibility.Hidden;
         }
 
         private void MI_Requirements_Click(object sender, RoutedEventArgs e)
         {
-            tab_requirements.IsSelected = true;
+            Grid_Orders.Visibility = Visibility.Hidden;
+            Grid_Products.Visibility = Visibility.Hidden;
+            Grid_Requirements.Visibility = Visibility.Visible;
         }
     }
 }
