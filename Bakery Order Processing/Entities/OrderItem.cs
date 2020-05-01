@@ -11,5 +11,6 @@ namespace Bakery_Order_Processing.Entities
         public string productName { get; set; }
 
         public int quantity { get; set; }
+        public float productPrice { get; set; }
     }
 }

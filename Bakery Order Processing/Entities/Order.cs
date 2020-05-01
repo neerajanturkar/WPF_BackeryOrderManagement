@@ -17,6 +17,8 @@ namespace Bakery_Order_Processing
         public Address deliveryAddress { get; set; }
         public ObservableCollection<OrderItem> orderItems { get; set; }
 
+        public float grandTotal { get; set; }
+
         public Order()
         {
             orderItems = new ObservableCollection<OrderItem>();

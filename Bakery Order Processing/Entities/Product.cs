@@ -10,5 +10,7 @@ namespace Bakery_Order_Processing.Entities
     {
         public string productId { get; set; }
         public string productName { get; set; }
+        public float productPrice { get; set; }
+        public string productDescription { get; set; }
     }
 }

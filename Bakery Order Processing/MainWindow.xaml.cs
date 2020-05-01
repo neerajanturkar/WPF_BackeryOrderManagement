@@ -377,6 +377,7 @@ namespace Bakery_Order_Processing
                                 select item;
                     Lbx_OrderItems.ItemsSource = items;
                 }
+                Calculate_GrandTotal();
             }
         }
 
@@ -542,6 +543,75 @@ namespace Bakery_Order_Processing
                 Process.Start(Application.ResourceAssembly.Location);
                 App.Current.Shutdown();
             }
+        }
+
+        private void Tbx_quantity_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Calculate_Price();
+        }
+
+        private void cb_products_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Calculate_Price();
+        }
+
+        private void Calculate_Price()
+        {
+           
+            if (cb_products.SelectedItem != null)
+            {
+                Product product = (from p in App._products where p.productName == (cb_products.SelectedItem).ToString() select p).FirstOrDefault();
+                OrderItem orderItem = Lbx_OrderItems.SelectedItem as OrderItem;
+                try
+                {
+                    if (product != null || orderItem != null)
+                    {
+                        if (Tbx_quantity.Text.Length > 0)
+                        {
+                            int quantity = Int32.Parse(Tbx_quantity.Text);
+                            orderItem.productPrice = product.productPrice * quantity;
+                            Tblk_ItemPrice.Text = "€ " + (product.productPrice * quantity).ToString();
+                            Calculate_GrandTotal();
+                        }
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Not a number", "Famous Bakers", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            return;
+        }
+
+        private void Calculate_GrandTotal()
+        {
+            float sum = 0;
+            Order order = Lbx_Orders.SelectedItem as Order;
+            if(order != null)
+            {
+                foreach (OrderItem item in order.orderItems)
+                {
+                    sum += item.productPrice;
+                }
+                Tblk_GrandTotal.Text = "€ " + sum.ToString();
+            }
+            
+        }
+
+        private void MI_Orders_Click(object sender, RoutedEventArgs e)
+        {
+            tab_general.IsSelected = true;
+        }
+
+        private void MI_Products_Click(object sender, RoutedEventArgs e)
+        {
+            tab_products.IsSelected = true;
+        }
+
+        private void MI_Requirements_Click(object sender, RoutedEventArgs e)
+        {
+            tab_requirements.IsSelected = true;
         }
     }
 }

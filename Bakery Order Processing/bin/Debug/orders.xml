@@ -4,31 +4,25 @@
     <id>1260580470</id>
     <custId>1625313079</custId>
     <orderDate>2020-04-25T23:56:12.4208957+02:00</orderDate>
-    <deliveryType>To Location</deliveryType>
-    <deliveryAddress>
-      <custId>1625313079</custId>
-      <addressId>1912724163</addressId>
-      <title>Shop A</title>
-      <street>Hauptstrasse 9</street>
-      <houseNo>10</houseNo>
-      <city>Heidelberg</city>
-      <postalCode>69123</postalCode>
-      <country>Germany</country>
-    </deliveryAddress>
+    <deliveryType>In store</deliveryType>
     <orderItems>
       <OrderItem>
         <productName>Milk Bread 500g</productName>
         <quantity>100</quantity>
+        <productPrice>1000</productPrice>
       </OrderItem>
       <OrderItem>
         <productName>Whole Wheat Bread 500g</productName>
         <quantity>150</quantity>
+        <productPrice>750</productPrice>
       </OrderItem>
       <OrderItem>
         <productName>Whole Wheat Bread 750g</productName>
         <quantity>300</quantity>
+        <productPrice>1800</productPrice>
       </OrderItem>
     </orderItems>
+    <grandTotal>0</grandTotal>
   </Order>
   <Order>
     <id>419692829</id>
@@ -49,12 +43,15 @@
       <OrderItem>
         <productName>Milk Bread 500g</productName>
         <quantity>100</quantity>
+        <productPrice>1000</productPrice>
       </OrderItem>
       <OrderItem>
         <productName>Whole Wheat Bread 500g</productName>
         <quantity>50</quantity>
+        <productPrice>250</productPrice>
       </OrderItem>
     </orderItems>
+    <grandTotal>0</grandTotal>
   </Order>
   <Order>
     <id>76152033</id>
@@ -63,36 +60,51 @@
     <deliveryType>To Location</deliveryType>
     <deliveryAddress>
       <custId>1625313079</custId>
-      <addressId>1912724163</addressId>
-      <title>Shop A</title>
-      <street>Hauptstrasse 9</street>
-      <houseNo>10</houseNo>
-      <city>Heidelberg</city>
-      <postalCode>69123</postalCode>
+      <addressId>487790027</addressId>
+      <title>Shop B</title>
+      <street>Main street 10</street>
+      <houseNo>5</houseNo>
+      <city>Mannheim</city>
+      <postalCode>78123</postalCode>
       <country>Germany</country>
     </deliveryAddress>
     <orderItems>
       <OrderItem>
         <productName>Whole Wheat Bread 500g</productName>
         <quantity>100</quantity>
+        <productPrice>500</productPrice>
       </OrderItem>
     </orderItems>
+    <grandTotal>0</grandTotal>
   </Order>
   <Order>
     <id>1783921559</id>
     <custId>1625313079</custId>
     <orderDate>2020-05-01T00:00:00</orderDate>
-    <deliveryType>In store</deliveryType>
+    <deliveryType>To Location</deliveryType>
+    <deliveryAddress>
+      <custId>1625313079</custId>
+      <addressId>487790027</addressId>
+      <title>Shop B</title>
+      <street>Main street 10</street>
+      <houseNo>5</houseNo>
+      <city>Mannheim</city>
+      <postalCode>78123</postalCode>
+      <country>Germany</country>
+    </deliveryAddress>
     <orderItems>
       <OrderItem>
-        <productName>Milk Bread 500g</productName>
-        <quantity>10</quantity>
+        <productName>Chocolate Cake 500g</productName>
+        <quantity>15</quantity>
+        <productPrice>18.75</productPrice>
       </OrderItem>
       <OrderItem>
         <productName>Whole Wheat Bread 750g</productName>
         <quantity>100</quantity>
+        <productPrice>600</productPrice>
       </OrderItem>
     </orderItems>
+    <grandTotal>0</grandTotal>
   </Order>
   <Order>
     <id>1097992731</id>
@@ -113,12 +125,15 @@
       <OrderItem>
         <productName>Milk Bread 500g</productName>
         <quantity>10</quantity>
+        <productPrice>100</productPrice>
       </OrderItem>
       <OrderItem>
         <productName>Whole Wheat Bread 750g</productName>
         <quantity>15</quantity>
+        <productPrice>90</productPrice>
       </OrderItem>
     </orderItems>
+    <grandTotal>0</grandTotal>
   </Order>
   <Order>
     <id>159417555</id>
@@ -128,13 +143,16 @@
     <orderItems>
       <OrderItem>
         <productName>Milk Bread 500g</productName>
-        <quantity>15</quantity>
+        <quantity>5</quantity>
+        <productPrice>0</productPrice>
       </OrderItem>
       <OrderItem>
         <productName>Whole Wheat Bread 500g</productName>
         <quantity>25</quantity>
+        <productPrice>0</productPrice>
       </OrderItem>
     </orderItems>
+    <grandTotal>0</grandTotal>
   </Order>
   <Order>
     <id>1506617516</id>
@@ -153,10 +171,12 @@
     </deliveryAddress>
     <orderItems>
       <OrderItem>
-        <productName>Milk Bread 500g</productName>
+        <productName>Chocolate Cake 500g</productName>
         <quantity>100</quantity>
+        <productPrice>125</productPrice>
       </OrderItem>
     </orderItems>
+    <grandTotal>0</grandTotal>
   </Order>
   <Order>
     <id>647038349</id>
@@ -174,6 +194,7 @@
       <country>Germany</country>
     </deliveryAddress>
     <orderItems />
+    <grandTotal>0</grandTotal>
   </Order>
   <Order>
     <id>1150423840</id>
@@ -183,7 +204,6 @@
     <deliveryAddress>
       <custId>399955744</custId>
       <addressId>415985732</addressId>
-      <title>Shop - A1</title>
       <street>Bismarkplatz 10</street>
       <houseNo>4</houseNo>
       <city>Heidelberg</city>
@@ -193,12 +213,23 @@
     <orderItems>
       <OrderItem>
         <productName>Milk Bread 500g</productName>
-        <quantity>15</quantity>
+        <quantity>10</quantity>
+        <productPrice>100</productPrice>
       </OrderItem>
       <OrderItem>
         <productName>Whole Wheat Bread 500g</productName>
         <quantity>25</quantity>
+        <productPrice>125</productPrice>
       </OrderItem>
     </orderItems>
+    <grandTotal>0</grandTotal>
+  </Order>
+  <Order>
+    <id>687311419</id>
+    <custId>399955744</custId>
+    <orderDate>2020-05-01T15:48:17.1612176+02:00</orderDate>
+    <deliveryType>In store</deliveryType>
+    <orderItems />
+    <grandTotal>0</grandTotal>
   </Order>
 </ArrayOfOrder>
