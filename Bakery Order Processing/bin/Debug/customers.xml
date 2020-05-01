@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Customer>
+    <id>1625313079</id>
+    <name>Grimmer</name>
+    <lastname>Anturkar</lastname>
+    <firstname>Neeraj</firstname>
+    <phone>15146982578</phone>
+    <addresses>
+      <Address>
+        <custId>1625313079</custId>
+        <addressId>1912724163</addressId>
+        <title>Shop A</title>
+        <street>Hauptstrasse 9</street>
+        <houseNo>10</houseNo>
+        <city>Heidelberg</city>
+        <postalCode>69123</postalCode>
+        <country>Germany</country>
+      </Address>
+      <Address>
+        <custId>1625313079</custId>
+        <addressId>487790027</addressId>
+        <title>Shop B</title>
+        <street>Main street 10</street>
+        <houseNo>5</houseNo>
+        <city>Mannheim</city>
+        <postalCode>78123</postalCode>
+        <country>Germany</country>
+      </Address>
+    </addresses>
+  </Customer>
+  <Customer>
+    <id>399955744</id>
+    <name>Gortz</name>
+    <lastname>Doe</lastname>
+    <firstname>John</firstname>
+    <phone>65656454646</phone>
+    <addresses>
+      <Address>
+        <custId>399955744</custId>
+        <addressId>415985732</addressId>
+        <title>Shop - A1</title>
+        <street>Bismarkplatz 10</street>
+        <houseNo>4</houseNo>
+        <city>Heidelberg</city>
+        <postalCode>69121</postalCode>
+        <country>Germany</country>
+      </Address>
+    </addresses>
+  </Customer>
+</ArrayOfCustomer>

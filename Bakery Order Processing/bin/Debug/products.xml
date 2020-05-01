@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ArrayOfProduct xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Product>
+    <productId>1648642614</productId>
+    <productName>Milk Bread 500g</productName>
+  </Product>
+  <Product>
+    <productId>786554056</productId>
+    <productName>Whole Wheat Bread 500g</productName>
+  </Product>
+  <Product>
+    <productId>1148997072</productId>
+    <productName>Whole Wheat Bread 750g</productName>
+  </Product>
+  <Product>
+    <productId>623778730</productId>
+    <productName>Chocolate Cake 500g</productName>
+  </Product>
+</ArrayOfProduct>

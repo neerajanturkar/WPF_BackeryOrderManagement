@@ -1,0 +1,395 @@
+﻿<Window x:Class="Bakery_Order_Processing.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:Bakery_Order_Processing"
+        xmlns:Resx="clr-namespace:Bakery_Order_Processing.Properties"
+        mc:Ignorable="d"
+        Loaded="Window_Loaded"
+        Title="{x:Static Resx:Resources.appName}" 
+        Width="1250" Height="740">
+    <Grid Margin="20,0,4,4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="230*"/>
+            <ColumnDefinition Width="961*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="31*"/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock HorizontalAlignment="Left" 
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Top"
+                   Margin="6,18,0,0" 
+                   FontSize="25"
+                   Foreground="Brown"
+                   FontWeight="Bold"
+                   Grid.Row="0"
+                   Height="40" Text="{x:Static Resx:Resources.appTitle}" Width="395" Grid.ColumnSpan="2"/>
+
+
+
+        <Label Content="Select Language" Grid.Column="1" HorizontalAlignment="Left" Margin="763,42,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.938,0.5"/>
+        <ComboBox x:Name="cmb_language" Grid.Column="1" HorizontalAlignment="Left" Margin="870,45,0,0" VerticalAlignment="Top" Width="83" SelectionChanged="cmb_language_SelectionChanged"/>
+        <TabControl HorizontalAlignment="Left" Height="611" Margin="6,74,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="1184" Grid.ColumnSpan="2">
+            <TabItem x:Name="tab_general" Header="General" Height="22" VerticalAlignment="Top">
+
+                <Grid Background="White" Margin="0,0,19,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="96*"/>
+                        <ColumnDefinition Width="1063*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="0*"/>
+                    </Grid.RowDefinitions>
+                    <ListBox Name="Lbx_Customers" HorizontalAlignment="Left" Height="462" 
+                 VerticalAlignment="Top" Width="207" Margin="15,65,0,0" SelectionChanged="Lbx_Customers_SelectionChanged" Grid.ColumnSpan="2">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="0,4">
+                        <Run Text="{Binding name}" FontWeight="Bold"/>
+                        <LineBreak/>
+                        <Run Text="{Binding lastname}"/>
+                        <Run Text=", "/>
+                        <Run Text="{Binding firstname}"/>
+
+
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+
+
+
+
+                    <TextBlock TextWrapping="Wrap"
+                Text="Enter company name to filter list"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                FontSize="14"
+                Foreground="#FF040404" Height="25" Margin="15,10,0,0" Width="245" FontWeight="Bold" Grid.ColumnSpan="2"/>
+
+
+                    <TextBox x:Name="tbx_cust_filter" HorizontalAlignment="Left" Height="21" Margin="15,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" TextChanged="tbx_cust_filter_TextChanged" Grid.ColumnSpan="2"/>
+
+                    <StackPanel Margin="57,532,0,0"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="77" Height="30" Grid.Column="1">
+                        <Button x:Name="btn_del_customer" Content="-" Height="30" VerticalAlignment="Top" Width="30" Margin="0,0,10,0" Click="btn_del_customer_Click"/>
+                        <Button x:Name="btn_add_customer" Content="+" Height="30" VerticalAlignment="Top" Width="30" Click="btn_add_customer_Click" />
+
+
+                    </StackPanel>
+
+                    <Label x:Name="lbl_cust_name" 
+                               Content="{Binding name}" 
+                               HorizontalAlignment="Left" 
+                               Height="35" 
+                               Margin="130,33,0,0" 
+                               VerticalAlignment="Top" 
+                               Width="195" 
+                               DataContext="{Binding SelectedItem, ElementName=Lbx_Customers}"   
+                               FontWeight="Bold"
+                               FontSize="16" Grid.Column="1"/>
+                    <TabControl SelectionChanged="TabControl_SelectionChanged" HorizontalAlignment="Left" Height="457" Margin="135,70,0,0" VerticalAlignment="Top" Width="921" Grid.Column="1">
+                        <TabItem x:Name="tab_orders" Header="Orders">
+
+                            <Grid Background="White" Height="429" Width="935">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"/>
+                                    <ColumnDefinition Width="90*"/>
+                                    <ColumnDefinition Width="20*"/>
+                                    <ColumnDefinition Width="818*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock TextWrapping="Wrap"
+                            Text="Filter by date (dd.mm.yyyy)"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Foreground="#FF040404" Height="25" Margin="3,10,0,0" Width="317" FontSize="14" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="1"/>
+                                <TextBox x:Name="tbx_filter_date" TextWrapping="Wrap" Text="" Width="155" Margin="3,45,770,359" Grid.ColumnSpan="3" FontSize="14" TextChanged="tbx_filter_date_TextChanged" Grid.Column="1"/>
+                                <Button x:Name="btn_del_order" Content="-" Height="25" Width="30" VerticalAlignment="Top" Margin="57,45,731,0" Grid.Column="3" Click="btn_del_order_Click"/>
+                                <Button x:Name="btn_add_order" Content="+" Height="25" Width="30" VerticalAlignment="Top" Margin="91,45,697,0" Grid.Column="3" Click="btn_add_order_Click" />
+                                <Button x:Name="btn_cpy_order" Content="Copy" Height="25" VerticalAlignment="Top" Margin="126,45,645,0" Grid.Column="3" Click="btn_cpy_order_Click" />
+                                <ListBox x:Name="Lbx_Orders" HorizontalAlignment="Left" Height="339" VerticalAlignment="Top" Width="280" Margin="3,80,0,0" Grid.ColumnSpan="3" SelectionChanged="Lbx_Orders_SelectionChanged" Grid.Column="1">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Margin="0,4">
+                                     <Grid Width="250">
+                                            <TextBlock Margin="0,4" Text="{Binding Path=orderDate, StringFormat=dd.MM.yyyy}" HorizontalAlignment="Left" />
+                                            <TextBlock Margin="80,4" Text="{Binding deliveryType}" HorizontalAlignment="Left" />
+                                            <TextBlock Margin="0,4,4,0" Text="{Binding deliveryAddress.title}" HorizontalAlignment="Right" />
+                                            
+                                            </Grid>
+                                 
+
+                                </TextBlock>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                                <TextBlock TextWrapping="Wrap"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Foreground="#FF040404" Height="25" Margin="200,80,0,0" Width="95" FontSize="14" FontWeight="Bold" Grid.Column="3"><Run Text="Order Details"/></TextBlock>
+                                <Label Content="Id" HorizontalAlignment="Left" Height="30" Margin="196,100,0,0" VerticalAlignment="Top" Width="115" Grid.Column="3"/>
+                                <Label Content="Delivery Date" HorizontalAlignment="Left" Height="24" Margin="196,125,0,0" VerticalAlignment="Top" Width="115" Grid.Column="3"/>
+                                <Label Content="Delivery Type" HorizontalAlignment="Left" Height="28" Margin="196,149,0,0" VerticalAlignment="Top" Width="115" Grid.Column="3"/>
+                                <Label x:Name="lbl_delivery_address" Content="Delivery Address" HorizontalAlignment="Left" Height="27" Margin="196,177,0,0" VerticalAlignment="Top" Width="115" Grid.Column="3"/>
+                                <TextBlock TextWrapping="Wrap"
+                            Text="Order Items"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Foreground="#FF040404" Height="20" Margin="200,217,0,0" Width="210" FontSize="14" FontWeight="Bold" Grid.Column="3"/>
+                                <Button x:Name="btn_del_orderItem" Content="-" Height="25" Width="25" VerticalAlignment="Top" Margin="440,215,353,0" Grid.Column="3" Click="btn_del_orderItem_Click"/>
+                                <Button x:Name="btn_add_orderItem" Content="+" Height="25" Width="25" VerticalAlignment="Top" Margin="470,215,323,0" Grid.Column="3" RenderTransformOrigin="-1.75,1.25" Click="btn_add_orderItem_Click" />
+                                <Grid Grid.Column="3" Margin="320,105,323,229">
+                                    <Viewbox Stretch="Fill" DataContext="{Binding ElementName=Lbx_Orders,Path=SelectedItem}">
+                                        <Grid Height="95" Width="175">
+                                            <RadioButton x:Name="rb_in_store" Content="In Store" HorizontalAlignment="Left" Margin="0,50,0,0" VerticalAlignment="Top" Checked="rb_in_store_Checked"/>
+                                            <RadioButton x:Name="rb_to_location" Content="To Location" HorizontalAlignment="Left" Margin="95,50,0,0" VerticalAlignment="Top" Checked="rb_to_location_Checked"/>
+                                            <ComboBox x:Name="cb_delivery_address" SelectedItem="{Binding deliveryAddress.title}" HorizontalAlignment="Left" Margin="0,73,0,0" Width="175" SelectionChanged="cb_delivery_address_SelectionChanged"/>
+                                            <DatePicker x:Name="dp_order_date" HorizontalAlignment="Left" Margin="1,20,0,0" SelectedDate="{Binding orderDate}" VerticalAlignment="Top" Width="174" SelectedDateChanged="dp_order_date_SelectedDateChanged"/>
+                                            <TextBlock x:Name="tblk_orderId" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding id}" VerticalAlignment="Top" RenderTransformOrigin="-4.796,1.562"/>
+
+                                        </Grid>
+                                    </Viewbox>
+
+                                </Grid>
+                                <Grid Grid.Column="3" Margin="200,245,38,10">
+                                    <Viewbox Stretch="Fill"  DataContext="{Binding ElementName=Lbx_Orders,Path=SelectedItem}">
+                                        <Grid Height="174" Width="580">
+                                            <ListBox x:Name="Lbx_OrderItems" ItemsSource="{Binding orderItems}" HorizontalAlignment="Left" Height="174" VerticalAlignment="Top" Width="295" SelectionChanged="Lbx_OrderItems_SelectionChanged">
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Grid Width="270">
+                                                            <TextBlock Margin="0,4" Text="{Binding productName}" HorizontalAlignment="Left" />
+                                                            <TextBlock Margin="0,4,2,0" Text="{Binding quantity}" HorizontalAlignment="Right" />
+
+                                                        </Grid>
+
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                            <Grid Margin="325,0,0,105">
+                                                <Viewbox Stretch="Fill" DataContext="{Binding ElementName=Lbx_OrderItems,Path=SelectedItem}">
+                                                    <Grid Height="69" Width="255">
+
+                                                        <Label Content="Item" HorizontalAlignment="Left" VerticalAlignment="Top" Width="60" FontSize="14" Height="35"/>
+                                                        <Label Content="Quantity" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" FontSize="14"/>
+                                                        <ComboBox x:Name="cb_products" SelectedItem="{Binding productName}" HorizontalAlignment="Left" Margin="95,5,0,0" VerticalAlignment="Top" Width="160"/>
+                                                        <TextBox HorizontalAlignment="Left" Text="{Binding quantity}" Height="23" Margin="95,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160"/>
+
+                                                    </Grid>
+                                                </Viewbox>
+
+                                            </Grid>
+
+                                        </Grid>
+                                    </Viewbox>
+
+                                </Grid>
+                                <Grid Grid.Column="3" Margin="520,129,188,231">
+
+                                    <Grid Height="69" Margin="10,0,-90,0">
+                                        <TextBlock x:Name="tblk_street_no" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Street No/House No." VerticalAlignment="Top" Foreground="#FF0035FF" Width="200" Margin="0,22,-10,0" Visibility="Hidden"/>
+
+
+                                        <TextBlock x:Name="tblk_city" HorizontalAlignment="Left" Margin="1,38,-10,0" TextWrapping="Wrap" Text="City" VerticalAlignment="Top" RenderTransformOrigin="0.51,1.625" Foreground="#FF0035FF" Width="199" Visibility="Hidden" />
+                                        <TextBlock x:Name="tblk_country" HorizontalAlignment="Left" Margin="0,55,-10,-2" TextWrapping="Wrap" Text="Country" VerticalAlignment="Top" RenderTransformOrigin="0.51,1.625" Foreground="#FF0035FF" Width="200" Visibility="Hidden" />
+
+                                    </Grid>
+
+
+                                </Grid>
+
+                            </Grid>
+
+                        </TabItem>
+                        <TabItem x:Name="tab_cust_details" Header="Customer Details" DataContext="{Binding SelectedItem, ElementName=Lbx_Customers}"   >
+                            <Grid>
+                                <Grid>
+                                    <Grid Background="White">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="12*"/>
+                                            <ColumnDefinition Width="105*"/>
+                                            <ColumnDefinition Width="818*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Content="Id" HorizontalAlignment="Left" Margin="18,25,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                        <Label Content="Name" HorizontalAlignment="Left" Margin="18,50,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                        <TextBlock TextWrapping="Wrap"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Foreground="#FF040404" Height="20" Margin="23,85,0,0" Width="317" FontSize="14" FontWeight="Bold" Text="Contact Person Details" Grid.Column="1" Grid.ColumnSpan="2"/>
+                                        <Label Content="Lastname" HorizontalAlignment="Left" Margin="18,120,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                        <Label Content="Firstname" HorizontalAlignment="Left" Margin="18,145,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                        <Label Content="Phone" HorizontalAlignment="Left" Margin="18,170,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                                        <TextBlock TextWrapping="Wrap"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Foreground="#FF040404" Height="20" Margin="25,215,0,0" Width="67" FontSize="14" FontWeight="Bold" Text="Addresses" Grid.Column="1"/>
+                                        <ListBox x:Name="lbx_addresses" HorizontalAlignment="Left" Height="175" Margin="25,240,0,0" VerticalAlignment="Top" Width="330" Grid.Column="1" Grid.ColumnSpan="2">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Margin="0,4">
+                                        <Run Text="{Binding title}" FontWeight="Bold"/>
+                                        <LineBreak/>
+                                        <Run Text="{Binding city}"/>
+                                                    </TextBlock>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                        <TextBox x:Name="tbx_name" Text="{Binding name}" HorizontalAlignment="Left" Height="20" Margin="88,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Grid.Column="2"/>
+                                        <TextBox x:Name="tbx_lastname" Text="{Binding lastname}" HorizontalAlignment="Left" Height="20" Margin="88,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Grid.Column="2"/>
+                                        <TextBox x:Name="tbx_firstname" Text="{Binding firstname}" HorizontalAlignment="Left" Height="20" Margin="88,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Grid.Column="2"/>
+                                        <TextBox x:Name="tbx_phone" Text="{Binding phone}" HorizontalAlignment="Left" Height="20" Margin="88,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="162" Grid.Column="2"/>
+                                        <Button x:Name="btn_del_customerAdd" Content="-" Height="25" VerticalAlignment="Top" Margin="198,209,578,0" Grid.Column="2" Click="btn_del_customerAddress_Click"/>
+                                        <Button x:Name="btn_add_customerAdd" Content="+" Height="25" VerticalAlignment="Top" Margin="227,209,549,0" Grid.Column="2" Click="btn_add_customerAddress_Click" />
+                                        <TextBlock x:Name="tblk_id" Grid.Column="2" HorizontalAlignment="Left" Margin="88,35,0,0" TextWrapping="Wrap" Text="{Binding id}" VerticalAlignment="Top"/>
+                                        <Viewbox Grid.Column="2" Margin="274,242,234,17" Stretch="Fill" DataContext="{Binding ElementName=lbx_addresses,Path=SelectedItem}" >
+                                            <Grid Height="170" Width="310">
+                                                <TextBlock TextWrapping="Wrap"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Foreground="#FF040404" Height="20" Margin="4,0,0,0" Width="112" FontSize="14" FontWeight="Bold" Text="Address Details"/>
+
+                                                <Label Content="Title" HorizontalAlignment="Left" Margin="1,29,0,0" VerticalAlignment="Top"/>
+                                                <Label Content="Street/House Number" HorizontalAlignment="Left" Margin="1,57,0,0" VerticalAlignment="Top"/>
+                                                <Label Content="City" HorizontalAlignment="Left" Margin="1,84,0,0" VerticalAlignment="Top"/>
+                                                <Label Content="Postal code" HorizontalAlignment="Left" Margin="1,115,0,0" VerticalAlignment="Top"/>
+                                                <Label Content="Country" HorizontalAlignment="Left" Margin="0,144,0,0" VerticalAlignment="Top"/>
+                                                <TextBox x:Name="tbx_title" Text="{Binding title}" HorizontalAlignment="Left" Height="20" Margin="165,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
+                                                <TextBox x:Name="tbx_street" Text="{Binding street}" HorizontalAlignment="Left" Height="20" Margin="165,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="110"/>
+                                                <TextBox x:Name="tbx_house_no" Text="{Binding houseNo}" HorizontalAlignment="Left" Height="20" Margin="280,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30"/>
+                                                <TextBox x:Name="tbx_city" Text="{Binding city}" HorizontalAlignment="Left" Height="20" Margin="165,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
+                                                <TextBox x:Name="tbx_postal_code" Text="{Binding postalCode}" HorizontalAlignment="Left" Height="20" Margin="165,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
+                                                <TextBox x:Name="tbx_country" Text="{Binding country}" HorizontalAlignment="Left" Height="20" Margin="165,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="145"/>
+
+                                            </Grid>
+                                        </Viewbox>
+
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </TabItem>
+
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab_products" Header="Products">
+                <Grid Background="White" Margin="0,0,19,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="85*"/>
+                        <ColumnDefinition Width="1063*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="0*"/>
+                    </Grid.RowDefinitions>
+                    <ListBox Name="Lbx_Products" HorizontalAlignment="Left" Height="462" 
+                                VerticalAlignment="Top" Width="207" Margin="4,65,0,0" SelectionChanged="Lbx_Products_SelectionChanged" Grid.ColumnSpan="2" Grid.Column="1">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Margin="0,4">
+                                    <Run Text="{Binding productName}"/>
+
+
+                                </TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+
+
+
+
+                    <TextBlock TextWrapping="Wrap"
+                Text="Enter product name to filter list"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                FontSize="14"
+                Foreground="#FF040404" Height="25" Margin="4,10,0,0" Width="245" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1"/>
+
+
+                    <TextBox x:Name="tbx_product_filter" HorizontalAlignment="Left" Height="21" Margin="4,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" TextChanged="tbx_product_filter_TextChanged" Grid.ColumnSpan="2" Grid.Column="1"/>
+
+                    <StackPanel Margin="57,532,0,0"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="77" Height="30" Grid.Column="2">
+                        <Button x:Name="btn_del_product" Content="-" Width="30" Margin="0,0,10,0" Click="btn_del_product_Click"/>
+                        <Button x:Name="btn_add_product" Content="+" Width="30" Click="btn_add_product_Click" Height="30" VerticalAlignment="Bottom" />
+
+
+                    </StackPanel>
+                    <Grid Grid.Column="2" Margin="175,60,398,455">
+
+                        <Grid Height="56" Width="300">
+                            <Viewbox Margin="0,0,-1,0" Stretch="Fill" DataContext="{Binding ElementName=Lbx_Products,Path=SelectedItem}">
+                                <Grid Height="56" Width="301">
+                                    <Label Content="Product Id" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                    <Label Content="Product Name" HorizontalAlignment="Left" Margin="0,30,0,0" VerticalAlignment="Top"/>
+                                    <TextBlock x:Name="tblk_product_id" Text="{Binding productId}" HorizontalAlignment="Left" Margin="121,5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
+                                    <TextBox x:Name="tbx_product_name" Text="{Binding productName}" Height="20" Margin="121,34,1,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                                </Grid>
+                            </Viewbox>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+            </TabItem>
+            <TabItem x:Name="tab_requirements" Header="Requirements">
+                <Grid Background="White" Margin="0,0,19,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="11*"/>
+                        <ColumnDefinition Width="85*"/>
+                        <ColumnDefinition Width="1063*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="0*"/>
+                    </Grid.RowDefinitions>
+                    <ListBox Name="Lbx_Delivery_Dates" HorizontalAlignment="Left" Height="462" 
+                                VerticalAlignment="Top" Width="207" Margin="4,65,0,0"  Grid.ColumnSpan="2" Grid.Column="1" SelectionChanged="Lbx_Delivery_Dates_SelectionChanged">
+
+                    </ListBox>
+
+
+
+
+
+                    <TextBlock TextWrapping="Wrap"
+                                Text="Enter delivery date to filter list"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                FontSize="14"
+                                Foreground="#FF040404" Height="25" Margin="4,10,0,0" Width="245" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1"/>
+
+
+                    <TextBox x:Name="tbx_delivery_date_filter" HorizontalAlignment="Left" Height="21" Margin="4,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" TextChanged="tbx_delivery_date_filter_TextChanged" Grid.ColumnSpan="2" Grid.Column="1"/>
+                    <ListBox x:Name="Lbx_Requirements" Grid.Column="2" HorizontalAlignment="Left" Height="430" Margin="155,94,0,0" VerticalAlignment="Top" Width="220">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                
+                                        <Grid Width="200">
+                                            <TextBlock Margin="0,4" Text="{Binding productName}" HorizontalAlignment="Left" />
+                                            
+                                            <TextBlock Margin="0,4,0,0" Text="{Binding sum}" HorizontalAlignment="Right" />
+                                            
+                                            </Grid>
+                                
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="155,69,0,0" TextWrapping="Wrap" Text="Items to be delivered on :" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBlock x:Name="tblk_selected_date" Grid.Column="2" HorizontalAlignment="Left" Margin="310,70,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="65"/>
+
+
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+
+    </Grid>
+</Window>

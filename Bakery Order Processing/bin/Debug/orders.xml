@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<ArrayOfOrder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Order>
+    <id>1260580470</id>
+    <custId>1625313079</custId>
+    <orderDate>2020-04-25T23:56:12.4208957+02:00</orderDate>
+    <deliveryType>To Location</deliveryType>
+    <deliveryAddress>
+      <custId>1625313079</custId>
+      <addressId>1912724163</addressId>
+      <title>Shop A</title>
+      <street>Hauptstrasse 9</street>
+      <houseNo>10</houseNo>
+      <city>Heidelberg</city>
+      <postalCode>69123</postalCode>
+      <country>Germany</country>
+    </deliveryAddress>
+    <orderItems>
+      <OrderItem>
+        <productName>Milk Bread 500g</productName>
+        <quantity>100</quantity>
+      </OrderItem>
+      <OrderItem>
+        <productName>Whole Wheat Bread 500g</productName>
+        <quantity>150</quantity>
+      </OrderItem>
+      <OrderItem>
+        <productName>Whole Wheat Bread 750g</productName>
+        <quantity>300</quantity>
+      </OrderItem>
+    </orderItems>
+  </Order>
+  <Order>
+    <id>419692829</id>
+    <custId>1625313079</custId>
+    <orderDate>2020-04-26T01:04:16.0743374+02:00</orderDate>
+    <deliveryType>To Location</deliveryType>
+    <deliveryAddress>
+      <custId>1625313079</custId>
+      <addressId>1912724163</addressId>
+      <title>Shop A</title>
+      <street>Hauptstrasse 9</street>
+      <houseNo>10</houseNo>
+      <city>Heidelberg</city>
+      <postalCode>69123</postalCode>
+      <country>Germany</country>
+    </deliveryAddress>
+    <orderItems>
+      <OrderItem>
+        <productName>Milk Bread 500g</productName>
+        <quantity>100</quantity>
+      </OrderItem>
+      <OrderItem>
+        <productName>Whole Wheat Bread 500g</productName>
+        <quantity>50</quantity>
+      </OrderItem>
+    </orderItems>
+  </Order>
+  <Order>
+    <id>76152033</id>
+    <custId>1625313079</custId>
+    <orderDate>2020-04-28T09:28:24.0365969+02:00</orderDate>
+    <deliveryType>To Location</deliveryType>
+    <deliveryAddress>
+      <custId>1625313079</custId>
+      <addressId>1912724163</addressId>
+      <title>Shop A</title>
+      <street>Hauptstrasse 9</street>
+      <houseNo>10</houseNo>
+      <city>Heidelberg</city>
+      <postalCode>69123</postalCode>
+      <country>Germany</country>
+    </deliveryAddress>
+    <orderItems>
+      <OrderItem>
+        <productName>Whole Wheat Bread 500g</productName>
+        <quantity>100</quantity>
+      </OrderItem>
+    </orderItems>
+  </Order>
+  <Order>
+    <id>1783921559</id>
+    <custId>1625313079</custId>
+    <orderDate>2020-05-01T00:00:00</orderDate>
+    <deliveryType>In store</deliveryType>
+    <orderItems>
+      <OrderItem>
+        <productName>Milk Bread 500g</productName>
+        <quantity>10</quantity>
+      </OrderItem>
+      <OrderItem>
+        <productName>Whole Wheat Bread 750g</productName>
+        <quantity>100</quantity>
+      </OrderItem>
+    </orderItems>
+  </Order>
+  <Order>
+    <id>1097992731</id>
+    <custId>1625313079</custId>
+    <orderDate>2020-05-01T00:00:00</orderDate>
+    <deliveryType>To Location</deliveryType>
+    <deliveryAddress>
+      <custId>1625313079</custId>
+      <addressId>1912724163</addressId>
+      <title>Shop A</title>
+      <street>Hauptstrasse 9</street>
+      <houseNo>10</houseNo>
+      <city>Heidelberg</city>
+      <postalCode>69123</postalCode>
+      <country>Germany</country>
+    </deliveryAddress>
+    <orderItems>
+      <OrderItem>
+        <productName>Milk Bread 500g</productName>
+        <quantity>10</quantity>
+      </OrderItem>
+      <OrderItem>
+        <productName>Whole Wheat Bread 750g</productName>
+        <quantity>15</quantity>
+      </OrderItem>
+    </orderItems>
+  </Order>
+  <Order>
+    <id>159417555</id>
+    <custId>399955744</custId>
+    <orderDate>2020-05-01T00:00:00</orderDate>
+    <deliveryType>In store</deliveryType>
+    <orderItems>
+      <OrderItem>
+        <productName>Milk Bread 500g</productName>
+        <quantity>15</quantity>
+      </OrderItem>
+      <OrderItem>
+        <productName>Whole Wheat Bread 500g</productName>
+        <quantity>25</quantity>
+      </OrderItem>
+    </orderItems>
+  </Order>
+  <Order>
+    <id>1506617516</id>
+    <custId>1625313079</custId>
+    <orderDate>2020-04-28T09:28:24.0365969+02:00</orderDate>
+    <deliveryType>To Location</deliveryType>
+    <deliveryAddress>
+      <custId>1625313079</custId>
+      <addressId>487790027</addressId>
+      <title>Shop B</title>
+      <street>Main street 10</street>
+      <houseNo>5</houseNo>
+      <city>Mannheim</city>
+      <postalCode>78123</postalCode>
+      <country>Germany</country>
+    </deliveryAddress>
+    <orderItems>
+      <OrderItem>
+        <productName>Milk Bread 500g</productName>
+        <quantity>100</quantity>
+      </OrderItem>
+    </orderItems>
+  </Order>
+  <Order>
+    <id>647038349</id>
+    <custId>399955744</custId>
+    <orderDate>2020-04-28T09:38:26.4971192+02:00</orderDate>
+    <deliveryType>To Location</deliveryType>
+    <deliveryAddress>
+      <custId>399955744</custId>
+      <addressId>415985732</addressId>
+      <title>Shop - A1</title>
+      <street>Bismarkplatz 10</street>
+      <houseNo>4</houseNo>
+      <city>Heidelberg</city>
+      <postalCode>69121</postalCode>
+      <country>Germany</country>
+    </deliveryAddress>
+    <orderItems />
+  </Order>
+  <Order>
+    <id>1150423840</id>
+    <custId>399955744</custId>
+    <orderDate>2020-05-15T00:00:00</orderDate>
+    <deliveryType>To Location</deliveryType>
+    <deliveryAddress>
+      <custId>399955744</custId>
+      <addressId>415985732</addressId>
+      <title>Shop - A1</title>
+      <street>Bismarkplatz 10</street>
+      <houseNo>4</houseNo>
+      <city>Heidelberg</city>
+      <postalCode>69121</postalCode>
+      <country>Germany</country>
+    </deliveryAddress>
+    <orderItems>
+      <OrderItem>
+        <productName>Milk Bread 500g</productName>
+        <quantity>15</quantity>
+      </OrderItem>
+      <OrderItem>
+        <productName>Whole Wheat Bread 500g</productName>
+        <quantity>25</quantity>
+      </OrderItem>
+    </orderItems>
+  </Order>
+</ArrayOfOrder>
