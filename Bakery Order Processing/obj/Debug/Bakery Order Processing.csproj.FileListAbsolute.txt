@@ -1,19 +1,22 @@
-C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\Bakery Order Processing.csprojAssemblyReference.cache
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\MainWindow.g.cs
+C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\ProductWindow.g.cs
+C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\RequirementsWindow.g.cs
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\App.g.cs
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\Bakery Order Processing_MarkupCompile.cache
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\Bakery Order Processing_MarkupCompile.lref
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\bin\Debug\Bakery Order Processing.exe.config
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\bin\Debug\Bakery Order Processing.exe
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\bin\Debug\Bakery Order Processing.pdb
+C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\bin\Debug\de\Bakery Order Processing.resources.dll
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\App.baml
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\MainWindow.baml
+C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\ProductWindow.baml
+C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\RequirementsWindow.baml
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\Bakery Order Processing.g.resources
+C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\Bakery_Order_Processing.Properties.Resources.resources
+C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\Bakery_Order_Processing.Properties.Resources.de.resources
+C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\Bakery Order Processing.csproj.GenerateResource.cache
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\Bakery Order Processing.csproj.CoreCompileInputs.cache
+C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\de\Bakery Order Processing.resources.dll
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\Bakery Order Processing.exe
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\Bakery Order Processing.pdb
-C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\Bakery_Order_Processing.Properties.Resources.resources
-C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\Bakery Order Processing.csproj.GenerateResource.cache
-C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\bin\Debug\de\Bakery Order Processing.resources.dll
-C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\Bakery_Order_Processing.Properties.Resources.de.resources
-C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\obj\Debug\de\Bakery Order Processing.resources.dll

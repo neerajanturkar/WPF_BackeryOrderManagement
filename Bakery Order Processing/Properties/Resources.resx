@@ -117,10 +117,112 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="addressDetails" xml:space="preserve">
+    <value>Address Details</value>
+  </data>
+  <data name="addresses" xml:space="preserve">
+    <value>Addresses</value>
+  </data>
   <data name="appName" xml:space="preserve">
     <value>Famous Bakers - Germany</value>
   </data>
   <data name="appTitle" xml:space="preserve">
-    <value>Backery Order Management</value>
+    <value>Bakery Order Management</value>
+  </data>
+  <data name="contactPersonDetails" xml:space="preserve">
+    <value>Contact Person Details</value>
+  </data>
+  <data name="copybtn" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="customerDetailsTab" xml:space="preserve">
+    <value>Customer Details</value>
+  </data>
+  <data name="date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="deliveryAddress" xml:space="preserve">
+    <value>Delivery Address</value>
+  </data>
+  <data name="deliveryDate" xml:space="preserve">
+    <value>Delivery Date</value>
+  </data>
+  <data name="deliveryType" xml:space="preserve">
+    <value>Delivery Type</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="filterByDate" xml:space="preserve">
+    <value>Filter by date (dd.mm.yyyy)</value>
+  </data>
+  <data name="filterCompany" xml:space="preserve">
+    <value>Enter company name to filter list</value>
+  </data>
+  <data name="filterProductionDate" xml:space="preserve">
+    <value>Enter production date to filter list</value>
+  </data>
+  <data name="filterProductName" xml:space="preserve">
+    <value>Enter product name to filter list</value>
+  </data>
+  <data name="firstname" xml:space="preserve">
+    <value>Firstname</value>
+  </data>
+  <data name="inStore" xml:space="preserve">
+    <value>In Store</value>
+  </data>
+  <data name="languageSelect" xml:space="preserve">
+    <value>Select Language</value>
+  </data>
+  <data name="lastname" xml:space="preserve">
+    <value>Lastname</value>
+  </data>
+  <data name="location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="menuManage" xml:space="preserve">
+    <value>Manage</value>
+  </data>
+  <data name="menuOrder" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="menuProducts" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="menuRequirements" xml:space="preserve">
+    <value>Requirements</value>
+  </data>
+  <data name="name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="orderDetails" xml:space="preserve">
+    <value>Order Details</value>
+  </data>
+  <data name="orderItems" xml:space="preserve">
+    <value>Order Items</value>
+  </data>
+  <data name="orderTab" xml:space="preserve">
+    <value>Orders</value>
+  </data>
+  <data name="phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="producedOn" xml:space="preserve">
+    <value>Items to be produced on :</value>
+  </data>
+  <data name="product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="toLocation" xml:space="preserve">
+    <value>To Location</value>
+  </data>
+  <data name="total" xml:space="preserve">
+    <value>Total :</value>
   </data>
 </root>

@@ -22,6 +22,7 @@ namespace Bakery_Order_Processing
         public Order()
         {
             orderItems = new ObservableCollection<OrderItem>();
+            orderDate = DateTime.Now;
         }
     }
 }

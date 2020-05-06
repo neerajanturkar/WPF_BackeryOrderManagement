@@ -21,9 +21,4 @@
     <productName>Chocolate Cake 500g</productName>
     <productPrice>1.25</productPrice>
   </Product>
-  <Product>
-    <productId>1860758101</productId>
-    <productName>Edit...</productName>
-    <productPrice>0</productPrice>
-  </Product>
 </ArrayOfProduct>

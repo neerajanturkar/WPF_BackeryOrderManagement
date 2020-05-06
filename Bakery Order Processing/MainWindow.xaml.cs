@@ -33,44 +33,31 @@ namespace Bakery_Order_Processing
             firstTime = true;
             CultureInfo.CurrentCulture = new CultureInfo(language);
             CultureInfo.CurrentUICulture = new CultureInfo(language);
-            InitializeComponent();
-            
+            InitializeComponent();            
         }
 
         public void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Lbx_Customers.ItemsSource = App._customers;
-            Lbx_Products.ItemsSource = App._products;
-            Lbx_Delivery_Dates.ItemsSource = App._orders;
+            Lbx_Customers.ItemsSource = App._customers;           
             List<String> productNames = new List<string>();
             foreach(Product product in App._products)
             {
                 productNames.Add(product.productName);
             }
-            cb_products.ItemsSource = productNames;
-
-            List<String> dates = new List<string>();
-            foreach(Order order in App._orders)
-            {
-                if(!dates.Contains(String.Format("{0:dd.MM.yyyy}", order.orderDate)))
-                {
-                    dates.Add(String.Format("{0:dd.MM.yyyy}", order.orderDate));
-                }
-            }
-            Lbx_Delivery_Dates.ItemsSource = dates;
-            cmb_language.ItemsSource = new List<string> { "de", "en" };
-            cmb_language.SelectedItem = language;
-
+            Cb_Products.ItemsSource = productNames;
+            Cb_Language.ItemsSource = new List<string> { "de", "en" };
+            Cb_Language.SelectedItem = language;
         }
 
-        private void tbx_cust_filter_TextChanged(object sender, TextChangedEventArgs e)
+        private void Tbx_CustFilter_TextChanged(object sender, TextChangedEventArgs e)
         {
             var filter = (sender as TextBox).Text.ToLower();
             var list = from customer in App._customers where customer.name.ToLower().Contains(filter) select customer;
             Lbx_Customers.ItemsSource = list;
         }
 
-        private void btn_add_customer_Click(object sender, RoutedEventArgs e)
+        // Customer 
+        private void Btn_AddCustomer_Click(object sender, RoutedEventArgs e)
         {
             Customer customer = new Customer
             {
@@ -83,11 +70,24 @@ namespace Bakery_Order_Processing
             App._customers.Add(customer);
             Lbx_Customers.SelectedItem = customer;
             Lbx_Customers.ScrollIntoView(customer);
-            tab_cust_details.IsSelected = true;
-
+            Tab_Cust_Details.IsSelected = true;
         }
 
-        private void btn_add_customerAddress_Click(object sender, RoutedEventArgs e)
+        private void Btn_DelCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            Customer customer = Lbx_Customers.SelectedItem as Customer;
+            if (customer == null)
+            {
+                MessageBox.Show("Please select a customer to delete", "Famous Bakers", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            var res = MessageBox.Show($"Are you sure to delete {customer.name} ?", "Famous Bakers", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (res == MessageBoxResult.Yes)
+                App._customers.Remove(customer);
+        }
+
+
+        private void Btn_AddCustomerAddress_Click(object sender, RoutedEventArgs e)
         {
             Customer customer = Lbx_Customers.SelectedItem as Customer;
             if (customer == null)
@@ -108,16 +108,59 @@ namespace Bakery_Order_Processing
                     postalCode = "Edit..."
                 };
                 customer.addresses.Add(address);
-                
-                lbx_addresses.ItemsSource = customer.addresses;
-                lbx_addresses.SelectedItem = address;
-                lbx_addresses.ScrollIntoView(address);
-
+                Lbx_Addresses.ItemsSource = customer.addresses;
+                Lbx_Addresses.SelectedItem = address;
+                Lbx_Addresses.ScrollIntoView(address);
             }
-
         }
 
-        private void btn_add_order_Click(object sender, RoutedEventArgs e)
+        private void Btn_DelCustomerAddress_Click(object sender, RoutedEventArgs e)
+        {
+            Customer customer = Lbx_Customers.SelectedItem as Customer;
+            Address address = Lbx_Addresses.SelectedItem as Address;
+            if (address == null)
+            {
+                MessageBox.Show("Please select an address to delete", "Famous Bakers", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            var res = MessageBox.Show($"Are you sure you want to delete {address.title} ?", "Famous Bakers", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (res == MessageBoxResult.Yes)
+                customer.addresses.Remove(address);
+            Lbx_Addresses.ItemsSource = customer.addresses;
+        }
+
+        private void Lbx_Customers_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedCustomer = Lbx_Customers.SelectedItem as Customer;
+            if (selectedCustomer != null)
+            {
+                if (selectedCustomer.addresses != null)
+                {
+                    Lbx_Addresses.ItemsSource = selectedCustomer.addresses;
+                    List<String> _addressTitles = new List<string>();
+                    foreach (Address address in selectedCustomer.addresses)
+                    {
+                        _addressTitles.Add(address.title);
+                    }
+                    Cb_DeliveryAddress.ItemsSource = _addressTitles;
+                }
+                if (App._orders != null)
+                {
+                    ObservableCollection<Order> orderList = new ObservableCollection<Order>(from order in App._orders
+                                                                                            where order.custId == selectedCustomer.id
+                                                                                            select order);
+                    Lbx_Orders.ItemsSource = orderList;
+
+                }
+                tblk_street_no.Visibility = Visibility.Hidden;
+                tblk_city.Visibility = Visibility.Hidden;
+                tblk_country.Visibility = Visibility.Hidden;
+            }
+        }
+
+        // Order
+
+        private void Btn_AddOrder_Click(object sender, RoutedEventArgs e)
         {
             Customer customer = Lbx_Customers.SelectedItem as Customer;
             if (customer == null)
@@ -130,12 +173,13 @@ namespace Bakery_Order_Processing
                 {
                     id = Math.Abs(Guid.NewGuid().GetHashCode()).ToString(),
                     custId = customer.id,
-                    orderDate = DateTime.Now
+                    orderDate = DateTime.Now,
+                    deliveryType = "In Store"
                 };
                 App._orders.Add(newOrder);
-                var orderList = from order in App._orders
-                                  where order.custId == customer.id
-                                  select order;
+                ObservableCollection<Order> orderList = new ObservableCollection<Order>(from order in App._orders
+                                                                                        where order.custId == customer.id
+                                                                                        select order);
                 Lbx_Orders.ItemsSource = orderList;
                 Lbx_Orders.SelectedItem = newOrder;
                 Lbx_Orders.ScrollIntoView(newOrder);
@@ -143,7 +187,7 @@ namespace Bakery_Order_Processing
             }
         }
 
-        private void btn_cpy_order_Click(object sender, RoutedEventArgs e)
+        private void Btn_CpyOrder_Click(object sender, RoutedEventArgs e)
         {
             Customer customer = Lbx_Customers.SelectedItem as Customer;
             if (customer == null)
@@ -165,33 +209,116 @@ namespace Bakery_Order_Processing
                     deliveryAddress = selectedOrder.deliveryAddress,
                     deliveryType = selectedOrder.deliveryType,
                     orderItems = selectedOrder.orderItems,
-                    orderDate = selectedOrder.orderDate
-
                 };
                 App._orders.Add(newOrder);
-                var orderList = from order in App._orders
-                                where order.custId == customer.id
-                                select order;
+                ObservableCollection<Order> orderList = new ObservableCollection<Order>(from order in App._orders
+                                                                                        where order.custId == customer.id
+                                                                                        select order);
+                Lbx_Orders.SelectedItem = null;
                 Lbx_Orders.ItemsSource = orderList;
                 Lbx_Orders.SelectedItem = newOrder;
                 Lbx_Orders.ScrollIntoView(newOrder);
             }
         }
 
-        private void btn_del_customer_Click(object sender, RoutedEventArgs e)
+        private void Btn_DelOrder_Click(object sender, RoutedEventArgs e)
         {
-            Customer customer = Lbx_Customers.SelectedItem as Customer;
-            if(customer == null)
+            Order order = Lbx_Orders.SelectedItem as Order;
+            if (order == null)
             {
-                MessageBox.Show("Please select a customer to delete", "Famous Bakers", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Please select an order to delete", "Famous Bakers", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            var res = MessageBox.Show($"Are you sure to delete {customer.name} ?", "Famous Bakers", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if(res == MessageBoxResult.Yes)
-                App._customers.Remove(customer);
+            var res = MessageBox.Show($"Are you sure you wan to delete order no {order.id} ?", "Famous Bakers", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (res == MessageBoxResult.Yes)
+            {
+                Customer selectedCustomer = Lbx_Customers.SelectedItem as Customer;
+                App._orders.Remove(order);
+                var orderList = from o in App._orders
+                                where o.custId == selectedCustomer.id
+                                select o;
+                Lbx_Orders.ItemsSource = orderList;
+            }
+
         }
 
-        private void btn_del_orderItem_Click(object sender, RoutedEventArgs e)
+        private void Lbx_Orders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Order order = Lbx_Orders.SelectedItem as Order;
+            if (order != null)
+            {
+                Order selectedOrder = (from o in App._orders where o.id == order.id select o).FirstOrDefault() as Order;
+                if (selectedOrder.deliveryType == "To Location")
+                {
+                    Rb_ToLocation.IsChecked = true;
+                }
+                else
+                {
+                    Rb_InStore.IsChecked = true;
+                }
+                if (selectedOrder.deliveryAddress != null)
+                {
+                    if (order.deliveryAddress.title != null)
+                        Cb_DeliveryAddress.SelectedItem = order.deliveryAddress.title.ToString();
+                }
+                if (selectedOrder.orderDate != null)
+                {
+                    Dp_OrderDate.SelectedDate = order.orderDate;
+                }
+                if (selectedOrder.orderItems != null)
+                {
+                    var items = from item in selectedOrder.orderItems
+                                select item;
+                    Lbx_OrderItems.ItemsSource = items;
+                }
+                if (DateTime.Now.Subtract(selectedOrder.orderDate).Days > 0)
+                {
+                    Dp_OrderDate.IsEnabled = false;
+                    Cb_DeliveryAddress.IsEnabled = false;
+                    Cb_Products.IsEnabled = false;
+                    Tbx_quantity.IsEnabled = false;
+                    Btn_AddOrderItem.IsEnabled = false;
+                    Btn_DelOrderItem.IsEnabled = false;
+                }
+                else
+                {
+                    Dp_OrderDate.IsEnabled = true;
+                    Cb_DeliveryAddress.IsEnabled = true;
+                    Cb_Products.IsEnabled = true;
+                    Tbx_quantity.IsEnabled = true;
+                    Btn_AddOrderItem.IsEnabled = true;
+                    Btn_DelOrderItem.IsEnabled = true;
+                }
+                CalculateGrandTotal();
+            }
+        }
+
+        private void Tbx_FilterDate_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Customer selectedCustomer = Lbx_Customers.SelectedItem as Customer;
+            var filter = (sender as TextBox).Text.ToLower();
+            var list = from order in App._orders
+                       where order.custId == selectedCustomer.id && String.Format("{0:dd.MM.yyyy  HH:mm:ss}", order.orderDate).Contains(filter)
+                       select order;
+            Lbx_Orders.ItemsSource = list;
+        }
+
+        // Order Item
+
+        private void Btn_AddOrderItem_Click(object sender, RoutedEventArgs e)
+        {
+            Order selectedOrder = (from order in App._orders where order.id == (Lbx_Orders.SelectedItem as Order).id select order).FirstOrDefault() as Order;
+            OrderItem orderItem = new OrderItem
+            {
+                productName = "Select Item",
+                quantity = 0
+            };
+            selectedOrder.orderItems.Add(orderItem);
+            Lbx_OrderItems.ItemsSource = selectedOrder.orderItems;
+            Lbx_OrderItems.SelectedItem = orderItem;
+            Lbx_OrderItems.ScrollIntoView(orderItem);
+        }
+        private void Btn_DelOrderItem_Click(object sender, RoutedEventArgs e)
         {
             Order selectedOrder = Lbx_Orders.SelectedItem as Order;
             OrderItem selectedOrderItem = Lbx_OrderItems.SelectedItem as OrderItem;
@@ -220,178 +347,44 @@ namespace Bakery_Order_Processing
             }
         }
 
-        private void btn_del_customerAddress_Click(object sender, RoutedEventArgs e)
+        // Order Details
+
+        private void Rb_InStore_Checked(object sender, RoutedEventArgs e)
         {
-            Customer customer = Lbx_Customers.SelectedItem as Customer;
-            Address address = lbx_addresses.SelectedItem as Address;
-            if (address == null)
-            {
-                MessageBox.Show("Please select an address to delete", "Famous Bakers", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            var res = MessageBox.Show($"Are you sure you want to delete {address.title} ?", "Famous Bakers", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (res == MessageBoxResult.Yes)
-                customer.addresses.Remove(address);
-            lbx_addresses.ItemsSource = customer.addresses;
-        }
-
-        private void btn_del_order_Click(object sender, RoutedEventArgs e)
-        {
-            Order order = Lbx_Orders.SelectedItem as Order;
-            if(order == null)
-            {
-                MessageBox.Show("Please select an order to delete", "Famous Bakers", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            var res = MessageBox.Show($"Are you sure you wan to delete order no {order.id} ?", "Famous Bakers", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if(res == MessageBoxResult.Yes)
-            {
-                App._orders.Remove(order);
-                Lbx_Orders.ItemsSource = App._orders;
-            }
-
-        }
-
-        private void Lbx_Customers_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-            var selectedCustomer = Lbx_Customers.SelectedItem as Customer;
-            if(selectedCustomer != null) 
-            {
-                if (selectedCustomer.addresses != null)
-                {
-                    lbx_addresses.ItemsSource = selectedCustomer.addresses;
-                    List<String> _addressTitles = new List<string>();
-                    foreach (Address address in selectedCustomer.addresses)
-                    {
-                        _addressTitles.Add(address.title);
-                    }
-                    cb_delivery_address.ItemsSource = _addressTitles;
-                }
-                if (App._orders != null)
-                {
-                    var orderList = from order in App._orders
-                                    where order.custId == selectedCustomer.id
-                                    select order;
-                    Lbx_Orders.ItemsSource = orderList;
-
-                }
-                tblk_street_no.Visibility = Visibility.Hidden;
-                tblk_city.Visibility = Visibility.Hidden;
-                tblk_country.Visibility = Visibility.Hidden;
-
-            }
-            
-            
-        }
-
-       
-
-        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if(tab_orders.IsSelected)
-            {
-                Customer selectedCustomer = Lbx_Customers.SelectedItem as Customer;
-                if (selectedCustomer != null)
-                {
-                    if (selectedCustomer.addresses != null)
-                    {
-                        
-                        lbx_addresses.ItemsSource = selectedCustomer.addresses;
-                        List<String> _addressTitles = new List<string>();
-                        foreach (Address address in selectedCustomer.addresses)
-                        {
-                            _addressTitles.Add(address.title);
-                        }
-                        cb_delivery_address.ItemsSource = _addressTitles;
-                    }
-                }
-            }
-        }
-
-        private void rb_in_store_Checked(object sender, RoutedEventArgs e)
-        {
+            Customer selectedCustomer = Lbx_Customers.SelectedItem as Customer;
             lbl_delivery_address.Visibility = Visibility.Hidden;
-            cb_delivery_address.Visibility = Visibility.Hidden;
+            Cb_DeliveryAddress.Visibility = Visibility.Hidden;
             tblk_street_no.Visibility = Visibility.Hidden;
             tblk_city.Visibility = Visibility.Hidden;
             tblk_country.Visibility = Visibility.Hidden;
 
-            Order order = Lbx_Orders.SelectedItem as Order;
-            if (order != null)
+            Order selectedOrder = Lbx_Orders.SelectedItem as Order;
+            if (selectedOrder != null)
             {
+                Order order = (from o in App._orders where o.id == selectedOrder.id select o).FirstOrDefault() as Order;
                 order.deliveryType = "In store";
                 order.deliveryAddress = null;
             }
+            Lbx_Orders.ItemsSource = from o in App._orders where o.custId == selectedCustomer.id select o;
+
         }
 
-        private void rb_to_location_Checked(object sender, RoutedEventArgs e)
+        private void Rb_ToLocation_Checked(object sender, RoutedEventArgs e)
         {
             Customer selectedCustomer = Lbx_Customers.SelectedItem as Customer;
             lbl_delivery_address.Visibility = Visibility.Visible;
-            cb_delivery_address.Visibility = Visibility.Visible;
-           
-            Order order = Lbx_Orders.SelectedItem as Order;
-            if(order != null)
+            Cb_DeliveryAddress.Visibility = Visibility.Visible;
+
+            Order selectedOrder = Lbx_Orders.SelectedItem as Order;
+            if (selectedOrder != null)
+            {
+
+                Order order = (from o in App._orders where o.id == selectedOrder.id select o).FirstOrDefault() as Order;
                 order.deliveryType = "To Location";
-            if(cb_delivery_address.SelectedItem != null)
-            {
-                var selectedAddress = cb_delivery_address.SelectedItem.ToString();
-                Address customerAddress = (from a in selectedCustomer.addresses where a.title == selectedAddress select a as Address).FirstOrDefault();
-                tblk_street_no.Visibility = Visibility.Visible;
-                tblk_city.Visibility = Visibility.Visible;
-                tblk_country.Visibility = Visibility.Visible;
-                tblk_street_no.Text = customerAddress.street + ", " + customerAddress.houseNo;
-                tblk_city.Text = customerAddress.city + ". " + customerAddress.postalCode;
-                tblk_country.Text = customerAddress.country;
-
-
-            }
-        }
-
-        private void Lbx_Orders_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Order order = Lbx_Orders.SelectedItem as Order;
-            if (order != null)
-            {
-                if (order.deliveryType == "To Location")
+                if (Cb_DeliveryAddress.SelectedItem != null)
                 {
-                    rb_to_location.IsChecked = true;
-                }
-                else
-                {
-                    rb_in_store.IsChecked = true;
-                }
-                if (order.deliveryAddress != null)
-                {
-                    if(order.deliveryAddress.title != null)
-                        cb_delivery_address.SelectedItem = order.deliveryAddress.title.ToString();
-                }
-                if (order.orderDate != null)
-                {
-                    dp_order_date.SelectedDate = order.orderDate;
-                }
-                if(order.orderItems != null)
-                {
-                    var items = from item in order.orderItems
-                                select item;
-                    Lbx_OrderItems.ItemsSource = items;
-                }
-                Calculate_GrandTotal();
-            }
-        }
-
-        private void cb_delivery_address_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Order order = Lbx_Orders.SelectedItem as Order;
-            Customer customer = Lbx_Customers.SelectedItem as Customer;
-            if (cb_delivery_address.SelectedItem != null)
-            {
-                var selectedAddress = cb_delivery_address.SelectedItem.ToString();
-                Address customerAddress = (from a in customer.addresses where a.title == selectedAddress select a as Address).FirstOrDefault();
-                if (order != null)
-                {
-                    order.deliveryAddress = customerAddress;
+                    var selectedAddress = Cb_DeliveryAddress.SelectedItem.ToString();
+                    Address customerAddress = (from a in selectedCustomer.addresses where a.title == selectedAddress select a).FirstOrDefault() as Address;
                     tblk_street_no.Visibility = Visibility.Visible;
                     tblk_city.Visibility = Visibility.Visible;
                     tblk_country.Visibility = Visibility.Visible;
@@ -399,136 +392,93 @@ namespace Bakery_Order_Processing
                     tblk_city.Text = customerAddress.city + ". " + customerAddress.postalCode;
                     tblk_country.Text = customerAddress.country;
                 }
+                if (Cb_DeliveryAddress.SelectedItem == null)
+                {
+                    if (selectedCustomer.addresses.Count > 0)
+                    {
+                        order.deliveryAddress = selectedCustomer.addresses[0];
+                        Cb_DeliveryAddress.SelectedItem = selectedCustomer.addresses[0].title;
+                        tblk_street_no.Visibility = Visibility.Visible;
+                        tblk_city.Visibility = Visibility.Visible;
+                        tblk_country.Visibility = Visibility.Visible;
+                        tblk_street_no.Text = selectedCustomer.addresses[0].street + ", " + selectedCustomer.addresses[0].houseNo;
+                        tblk_city.Text = selectedCustomer.addresses[0].city + ". " + selectedCustomer.addresses[0].postalCode;
+                        tblk_country.Text = selectedCustomer.addresses[0].country;
+                    }
+                }
             }
         }
 
-        private void dp_order_date_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        private void Cb_DeliveryAddress_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Order selectedOrder = Lbx_Orders.SelectedItem as Order;
+            Customer customer = Lbx_Customers.SelectedItem as Customer;
+            if (Cb_DeliveryAddress.SelectedItem != null)
+            {
+                var selectedAddress = Cb_DeliveryAddress.SelectedItem.ToString();
+                Address customerAddress = (from a in customer.addresses where a.title == selectedAddress select a as Address).FirstOrDefault();
+                if (selectedOrder != null)
+                {
+                    Order order = (from o in App._orders where o.id == selectedOrder.id select o).FirstOrDefault() as Order;
+                    order.deliveryAddress = customerAddress;
+                    tblk_street_no.Visibility = Visibility.Visible;
+                    tblk_city.Visibility = Visibility.Visible;
+                    tblk_country.Visibility = Visibility.Visible;
+                    tblk_street_no.Text = customerAddress.street + ", " + customerAddress.houseNo;
+                    tblk_city.Text = customerAddress.city + ". " + customerAddress.postalCode;
+                    tblk_country.Text = customerAddress.country;
+                    
+                    Lbx_Orders.ItemsSource = from o in App._orders where o.custId == customer.id select o;
+                }
+            }
+        }
+
+        private void Dp_OrderDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             Order order = Lbx_Orders.SelectedItem as Order;
-            if (dp_order_date.SelectedDate != null)
+            if (Dp_OrderDate.SelectedDate != null)
             {
                 if (order != null)
                 {
-                   order.orderDate = (DateTime)dp_order_date.SelectedDate;
+                    order.orderDate = (DateTime)Dp_OrderDate.SelectedDate;
                 }
             }
         }
 
-        private void btn_add_orderItem_Click(object sender, RoutedEventArgs e)
+        private void Tbx_quantity_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Order order = Lbx_Orders.SelectedItem as Order;
-            OrderItem orderItem = new OrderItem
+            CalculatePrice();
+        }
+
+        private void Cb_Products_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CalculatePrice();
+        }
+
+        // Common
+        private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(Tab_Orders.IsSelected)
             {
-                productName = "Select Item",
-                quantity = 0
-            };
-            order.orderItems.Add(orderItem);
-            Lbx_OrderItems.ItemsSource = order.orderItems;
-            Lbx_OrderItems.SelectedItem = orderItem;
-            Lbx_OrderItems.ScrollIntoView(orderItem);
-            
-
-
-        }
-
-        private void tbx_filter_date_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Customer selectedCustomer = Lbx_Customers.SelectedItem as Customer;
-            var filter = (sender as TextBox).Text.ToLower();
-            var list = from order in App._orders where order.custId == selectedCustomer.id && String.Format("{0:dd.MM.yyyy  HH:mm:ss}", order.orderDate).Contains(filter)
-                       select order;
-            Lbx_Orders.ItemsSource = list;
-        }
-
-        private void btn_del_product_Click(object sender, RoutedEventArgs e)
-        {
-            Product selectedProduct = Lbx_Products.SelectedItem as Product;
-            if (selectedProduct == null)
-            {
-                MessageBox.Show("Please select a product to delete", "Famous Bakers", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            var res = MessageBox.Show($"Are you sure to delete {selectedProduct.productName} ?", "Famous Bakers", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (res == MessageBoxResult.Yes)
-                App._products.Remove(selectedProduct);
-        }
-
-        private void btn_add_product_Click(object sender, RoutedEventArgs e)
-        {
-            Product newProduct = new Product
-            {
-                productId = Math.Abs(Guid.NewGuid().GetHashCode()).ToString(),
-                productName = "Edit..."
-            };
-            App._products.Add(newProduct);
-            Lbx_Products.ItemsSource = App._products;
-            Lbx_Products.SelectedItem = newProduct;
-            Lbx_Products.ScrollIntoView(newProduct);
-        }
-
-        private void Lbx_Products_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void tbx_product_filter_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var filter = (sender as TextBox).Text.ToLower();
-            var list = from product in App._products where product.productName.ToLower().Contains(filter) select product;
-            Lbx_Products.ItemsSource = list;
-        }
-
-        private void Lbx_Delivery_Dates_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            String deliveryDate = Lbx_Delivery_Dates.SelectedItem as String;
-            var orders = from order in App._orders where String.Format("{0:dd.MM.yyyy}", order.orderDate) == deliveryDate select order;
-            List<OrderItem> orderItems = new List<OrderItem>();
-            foreach(Order o in orders)
-            {
-                foreach(OrderItem item in o.orderItems)
+                Customer selectedCustomer = Lbx_Customers.SelectedItem as Customer;
+                if (selectedCustomer != null)
                 {
-                    orderItems.Add(item);
-                }
-                
-            }
+                    if (selectedCustomer.addresses != null)
+                    {
 
-          
-            
-            var res = (from item in orderItems
-                      group item by item.productName into g
-                      select new
-                      {
-                          productName = g.Key,
-                          sum = g.Sum(i => i.quantity)
-
-                      }).ToList();
-            Lbx_Requirements.ItemsSource = res;
-            tblk_selected_date.Text = deliveryDate;
-        }
-
-        private void Lbx_OrderItems_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void tbx_delivery_date_filter_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            List<String> dates = new List<string>();
-            var filter = (sender as TextBox).Text.ToLower();
-            var list = from order in App._orders
-                       where String.Format("{0:dd.MM.yyyy  HH:mm:ss}", order.orderDate).Contains(filter)
-                       select order;
-            foreach (Order order in list)
-            {
-                if (!dates.Contains(String.Format("{0:dd.MM.yyyy}", order.orderDate)))
-                {
-                    dates.Add(String.Format("{0:dd.MM.yyyy}", order.orderDate));
+                        Lbx_Addresses.ItemsSource = selectedCustomer.addresses;
+                        List<String> _addressTitles = new List<string>();
+                        foreach (Address address in selectedCustomer.addresses)
+                        {
+                            _addressTitles.Add(address.title);
+                        }
+                        Cb_DeliveryAddress.ItemsSource = _addressTitles;
+                    }
                 }
             }
-            Lbx_Delivery_Dates.ItemsSource = dates;
         }
 
-        private void cmb_language_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Cb_Language_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (firstTime)
             {
@@ -537,7 +487,7 @@ namespace Bakery_Order_Processing
             }
             else
             {
-                language = cmb_language.SelectedItem.ToString().Substring(0, 2);
+                language = Cb_Language.SelectedItem.ToString().Substring(0, 2);
                 Properties.Settings.Default.language = language;
                 Properties.Settings.Default.Save();
                 Process.Start(Application.ResourceAssembly.Location);
@@ -545,22 +495,34 @@ namespace Bakery_Order_Processing
             }
         }
 
-        private void Tbx_quantity_TextChanged(object sender, TextChangedEventArgs e)
+        // Menu 
+        private void MI_Orders_Click(object sender, RoutedEventArgs e)
         {
-            Calculate_Price();
+            return;
         }
 
-        private void cb_products_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MI_Products_Click(object sender, RoutedEventArgs e)
         {
-            Calculate_Price();
+            ProductWindow productWindow = new ProductWindow();
+            productWindow.Show();
+            this.Close();
         }
 
-        private void Calculate_Price()
+        private void MI_Requirements_Click(object sender, RoutedEventArgs e)
         {
-           
-            if (cb_products.SelectedItem != null)
+            RequirementsWindow requirementsWindow = new RequirementsWindow();
+            requirementsWindow.Show();
+            this.Close();
+        }
+
+
+        // General
+        private void CalculatePrice()
+        {
+
+            if (Cb_Products.SelectedItem != null)
             {
-                Product product = (from p in App._products where p.productName == (cb_products.SelectedItem).ToString() select p).FirstOrDefault();
+                Product product = (from p in App._products where p.productName == (Cb_Products.SelectedItem).ToString() select p).FirstOrDefault();
                 OrderItem orderItem = Lbx_OrderItems.SelectedItem as OrderItem;
                 try
                 {
@@ -571,7 +533,7 @@ namespace Bakery_Order_Processing
                             int quantity = Int32.Parse(Tbx_quantity.Text);
                             orderItem.productPrice = product.productPrice * quantity;
                             Tblk_ItemPrice.Text = "€ " + (product.productPrice * quantity).ToString();
-                            Calculate_GrandTotal();
+                            CalculateGrandTotal();
                         }
                     }
                 }
@@ -584,11 +546,11 @@ namespace Bakery_Order_Processing
             return;
         }
 
-        private void Calculate_GrandTotal()
+        private void CalculateGrandTotal()
         {
             float sum = 0;
             Order order = Lbx_Orders.SelectedItem as Order;
-            if(order != null)
+            if (order != null)
             {
                 foreach (OrderItem item in order.orderItems)
                 {
@@ -596,22 +558,9 @@ namespace Bakery_Order_Processing
                 }
                 Tblk_GrandTotal.Text = "€ " + sum.ToString();
             }
-            
+
         }
 
-        private void MI_Orders_Click(object sender, RoutedEventArgs e)
-        {
-            tab_general.IsSelected = true;
-        }
-
-        private void MI_Products_Click(object sender, RoutedEventArgs e)
-        {
-            tab_products.IsSelected = true;
-        }
-
-        private void MI_Requirements_Click(object sender, RoutedEventArgs e)
-        {
-            tab_requirements.IsSelected = true;
-        }
+  
     }
 }
