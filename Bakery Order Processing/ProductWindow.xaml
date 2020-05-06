@@ -75,8 +75,8 @@
             </ListBox>
 
             <StackPanel Margin="144,561,0,-591"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="77" Height="30" Grid.Column="2" Grid.RowSpan="2">
-                <Button x:Name="Btn_DelProduct" Content="-" Width="30" Margin="0,0,10,0" Click="Btn_DelProduct_Click" />
-                <Button x:Name="Btn_AddProduct" Content="+" Width="30"  Height="30" VerticalAlignment="Bottom" Click="Btn_AddProduct_Click" />
+                <Button x:Name="Btn_DelProduct" Content="-" Width="30" Margin="0,0,10,0" Click="Btn_DelProduct_Click" ToolTip="{x:Static Resx:Resources.deleteProduct}" />
+                <Button x:Name="Btn_AddProduct" Content="+" Width="30"  Height="30" VerticalAlignment="Bottom" Click="Btn_AddProduct_Click" ToolTip="{x:Static Resx:Resources.newProduct}" />
 
 
             </StackPanel>

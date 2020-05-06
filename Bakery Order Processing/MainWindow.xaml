@@ -80,8 +80,8 @@
             <TextBox x:Name="Tbx_CustFilter" HorizontalAlignment="Left" Height="21" Margin="3,18,0,-39" TextWrapping="Wrap" VerticalAlignment="Top" Width="207" TextChanged="Tbx_CustFilter_TextChanged" Grid.ColumnSpan="2" Grid.Row="1"/>
 
             <StackPanel Margin="119,526,0,-556"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Width="77" Height="30" Grid.Column="1" Grid.Row="1">
-                <Button x:Name="Btn_DelCustomer" Content="-" Height="30" VerticalAlignment="Top" Width="30" Margin="0,0,10,0" Click="Btn_DelCustomer_Click" ToolTip="Delete Customer"/>
-                <Button x:Name="Btn_AddCustomer" Content="+" Height="30" VerticalAlignment="Top" Width="30" Click="Btn_AddCustomer_Click" RenderTransformOrigin="1.833,0.7" ToolTip="New Customer" />
+                <Button x:Name="Btn_DelCustomer" Content="-" Height="30" VerticalAlignment="Top" Width="30" Margin="0,0,10,0" Click="Btn_DelCustomer_Click" ToolTip="{x:Static Resx:Resources.deleteCustomer}"/>
+                <Button x:Name="Btn_AddCustomer" Content="+" Height="30" VerticalAlignment="Top" Width="30" Click="Btn_AddCustomer_Click" RenderTransformOrigin="1.833,0.7" ToolTip="{x:Static Resx:Resources.newCustomer}" />
             </StackPanel>
 
             <Label x:Name="Lbl_cust_name" 
@@ -109,8 +109,8 @@
                             VerticalAlignment="Top"
                             Foreground="#FF040404" Height="25" Margin="5,15,0,0" Width="317" FontSize="14" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="1"/>
                         <TextBox x:Name="Tbx_FilterDate" TextWrapping="Wrap" Text="" Margin="3,45,780,353" Grid.ColumnSpan="3" FontSize="14" TextChanged="Tbx_FilterDate_TextChanged" Grid.Column="1"/>
-                        <Button x:Name="Btn_DelOrder" Content="-" Height="25" Width="30" VerticalAlignment="Top" Margin="51,45,743,0" Grid.Column="3" Click="Btn_DelOrder_Click" ToolTip="Delete Order"/>
-                        <Button x:Name="Btn_AddOrder" Content="+" Height="25" Width="30" VerticalAlignment="Top" Margin="86,45,708,0" Grid.Column="3" Click="Btn_AddOrder_Click" ToolTip="New Order" />
+                        <Button x:Name="Btn_DelOrder" Content="-" Height="25" Width="30" VerticalAlignment="Top" Margin="51,45,743,0" Grid.Column="3" Click="Btn_DelOrder_Click" ToolTip="{x:Static Resx:Resources.deleteOrder}"/>
+                        <Button x:Name="Btn_AddOrder" Content="+" Height="25" Width="30" VerticalAlignment="Top" Margin="86,45,708,0" Grid.Column="3" Click="Btn_AddOrder_Click" ToolTip="{x:Static Resx:Resources.newOrder}" />
                         <Button x:Name="Btn_CpyOrder" Content="{x:Static Resx:Resources.copybtn}" Height="25" VerticalAlignment="Top" Margin="119,45,652,0" Grid.Column="3" Click="Btn_CpyOrder_Click" ToolTip="Copy Customer" />
                         <Rectangle Grid.Column="1" Fill="DarkGray" HorizontalAlignment="Left" Height="15" Margin="3,79,0,0" Stroke="Black" VerticalAlignment="Top" Width="280" Opacity="0.5" Grid.ColumnSpan="3"/>
 
@@ -147,8 +147,8 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Foreground="#FF040404" Height="20" Margin="200,200,0,0" Width="210" FontSize="14" FontWeight="Bold" Grid.Column="3"/>
-                        <Button x:Name="Btn_DelOrderItem" Content="-" Height="25" Width="25" VerticalAlignment="Top" Margin="440,195,353,0" Grid.Column="3" Click="Btn_DelOrderItem_Click" ToolTip="Delete Item in the order"/>
-                        <Button x:Name="Btn_AddOrderItem" Content="+" Height="25" Width="25" VerticalAlignment="Top" Margin="470,195,323,0" Grid.Column="3" RenderTransformOrigin="-1.75,1.25" Click="Btn_AddOrderItem_Click" ToolTip="Add Item to the Order" />
+                        <Button x:Name="Btn_DelOrderItem" Content="-" Height="25" Width="25" VerticalAlignment="Top" Margin="440,195,353,0" Grid.Column="3" Click="Btn_DelOrderItem_Click" ToolTip="{x:Static Resx:Resources.deleteOrderItem}"/>
+                        <Button x:Name="Btn_AddOrderItem" Content="+" Height="25" Width="25" VerticalAlignment="Top" Margin="470,195,323,0" Grid.Column="3" RenderTransformOrigin="-1.75,1.25" Click="Btn_AddOrderItem_Click" ToolTip="{x:Static Resx:Resources.newOrderItem}" />
                         <Grid Grid.Column="3" Margin="320,105,323,229">
                             <Viewbox  DataContext="{Binding ElementName=Lbx_Orders,Path=SelectedItem}" Margin="0,-28,0,28">
                                 <Grid Height="95" Width="175">

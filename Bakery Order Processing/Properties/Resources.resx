@@ -141,6 +141,18 @@
   <data name="date" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="deleteCustomer" xml:space="preserve">
+    <value>Delete Customer</value>
+  </data>
+  <data name="deleteOrder" xml:space="preserve">
+    <value>Delete Order</value>
+  </data>
+  <data name="deleteOrderItem" xml:space="preserve">
+    <value>Remove Item from the order</value>
+  </data>
+  <data name="deleteProduct" xml:space="preserve">
+    <value>Delete Product</value>
+  </data>
   <data name="deliveryAddress" xml:space="preserve">
     <value>Delivery Address</value>
   </data>
@@ -194,6 +206,18 @@
   </data>
   <data name="name" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="newCustomer" xml:space="preserve">
+    <value>New Customer</value>
+  </data>
+  <data name="newOrder" xml:space="preserve">
+    <value>New Order</value>
+  </data>
+  <data name="newOrderItem" xml:space="preserve">
+    <value>Add Item to the order</value>
+  </data>
+  <data name="newProduct" xml:space="preserve">
+    <value>New Product</value>
   </data>
   <data name="orderDetails" xml:space="preserve">
     <value>Order Details</value>

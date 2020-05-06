@@ -133,6 +133,42 @@ namespace Bakery_Order_Processing.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete Customer.
+        /// </summary>
+        public static string deleteCustomer {
+            get {
+                return ResourceManager.GetString("deleteCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Order.
+        /// </summary>
+        public static string deleteOrder {
+            get {
+                return ResourceManager.GetString("deleteOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove Item from the order.
+        /// </summary>
+        public static string deleteOrderItem {
+            get {
+                return ResourceManager.GetString("deleteOrderItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete Product.
+        /// </summary>
+        public static string deleteProduct {
+            get {
+                return ResourceManager.GetString("deleteProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delivery Address.
         /// </summary>
         public static string deliveryAddress {
@@ -291,6 +327,42 @@ namespace Bakery_Order_Processing.Properties {
         public static string name {
             get {
                 return ResourceManager.GetString("name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Customer.
+        /// </summary>
+        public static string newCustomer {
+            get {
+                return ResourceManager.GetString("newCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Order.
+        /// </summary>
+        public static string newOrder {
+            get {
+                return ResourceManager.GetString("newOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Item to the order.
+        /// </summary>
+        public static string newOrderItem {
+            get {
+                return ResourceManager.GetString("newOrderItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Product.
+        /// </summary>
+        public static string newProduct {
+            get {
+                return ResourceManager.GetString("newProduct", resourceCulture);
             }
         }
         
