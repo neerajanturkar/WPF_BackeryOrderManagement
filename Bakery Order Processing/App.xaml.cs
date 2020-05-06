@@ -47,6 +47,7 @@ namespace Bakery_Order_Processing
        
         public void Application_Exit(object sender, ExitEventArgs e)
         {
+
             FileHandler.WriteXML<ObservableCollection<Customer>>(_customers, "customers.xml");
             FileHandler.WriteXML<ObservableCollection<Order>>(_orders, "orders.xml");
             FileHandler.WriteXML<ObservableCollection<Product>>(_products, "products.xml");

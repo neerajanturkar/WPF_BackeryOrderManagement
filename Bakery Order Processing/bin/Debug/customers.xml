@@ -10,7 +10,6 @@
       <Address>
         <custId>1625313079</custId>
         <addressId>1912724163</addressId>
-        <title>Shop A</title>
         <street>Hauptstrasse 9</street>
         <houseNo>10</houseNo>
         <city>Heidelberg</city>
@@ -30,20 +29,20 @@
     </addresses>
   </Customer>
   <Customer>
-    <id>399955744</id>
+    <id>43493271</id>
     <name>Gortz</name>
     <lastname>Doe</lastname>
     <firstname>John</firstname>
-    <phone>65656454646</phone>
+    <phone>23232323</phone>
     <addresses>
       <Address>
-        <custId>399955744</custId>
-        <addressId>415985732</addressId>
-        <title>Shop A1</title>
-        <street>Bismarkplatz 10</street>
-        <houseNo>4</houseNo>
-        <city>Heidelberg</city>
-        <postalCode>69121</postalCode>
+        <custId>43493271</custId>
+        <addressId>1153996174</addressId>
+        <title>Shop 101</title>
+        <street>Main Street</street>
+        <houseNo>10</houseNo>
+        <city>Mannheim</city>
+        <postalCode>101145</postalCode>
         <country>Germany</country>
       </Address>
     </addresses>

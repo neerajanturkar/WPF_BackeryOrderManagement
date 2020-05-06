@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\nanturkar\source\repos\Bakery Order Processing\Bakery Order Processing\App.xaml
-11151548125
+3176262079
 
-13-1428826416
+15-2035699434
 13-1505183044
-MainWindow.xaml;
+MainWindow.xaml;ProductWindow.xaml;RequirementsWindow.xaml;
 
-False
+True
 
